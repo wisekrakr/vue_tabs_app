@@ -2,11 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 // Views
-import Home from "../views/Home.vue";
-import About from "../views/About.vue";
+import Home from "@/views/Home.vue";
+import About from "@/views/About.vue";
 
 // Components
-import Register from "../components/auth/Register";
+import Register from "@/components/auth/Register";
+// import Test from "@/components/TestPage.vue";
 
 Vue.use(VueRouter);
 

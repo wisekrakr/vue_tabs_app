@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-// const { sequelize } = require("./models");
+const { sequelize } = require("./models");
 const config = require("./config/config");
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(cors());
 require("./routes")(app);
 
 // Connect sequelize to the database and create tables if they don't exist
-// sequelize.sync().then(() => {
-//   app.listen(config.port);
-//   console.log(`Server is connected to port ${config.port}`);
-// });
+sequelize.sync().then(() => {
+  app.listen(config.port);
+  console.log(`Server is connected to port ${config.port}`);
+});

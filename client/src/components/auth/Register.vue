@@ -1,13 +1,32 @@
 <template>
-  <div>
-    <h1>Register as User</h1>
+  <v-container fluid>
+    <v-layout row>
+      <v-flex xs6 offset-xs3>
+        <v-toolbar dense dark>
+          <v-toolbar-title>
+            Sign Up
+          </v-toolbar-title>
+          <v-subheader>
+            Create an account
+          </v-subheader>
+        </v-toolbar>
+        <div class="pl-4 pr-4 pt-2 pb-2">
+          <v-form>
+            <v-flex xs6 offset-xs3>
+              <v-text-field label="Email" v-model="email" />
+            </v-flex>
+            <v-flex xs6 offset-xs3>
+              <v-text-field label="Password" v-model="password" />
+            </v-flex>
 
-    <input type="email" v-model="email" name="email" placeholder="email" />
-    <br />
-    <input type="password" v-model="password" name="password" placeholder="password" />
-    <br />
-    <button @click="registerUser">Register</button>
-  </div>
+            <div v-html="error" class="error" />
+
+            <button @click="registerUser" class="btn med-btn">Register</button>
+          </v-form>
+        </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -16,34 +35,26 @@ export default {
   name: "Register",
   data: () => ({
     email: "",
-    password: ""
+    password: "",
+    error: null
   }),
   methods: {
     async registerUser() {
-      const res = await AuthenticationService.register({
-        email: this.email,
-        password: this.password
-      });
-      console.log(res.data);
+      try {
+        await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        });
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
     }
   }
 };
 </script>
 
-
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.error {
+  color: var(--reddish);
 }
 </style>
