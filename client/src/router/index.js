@@ -7,25 +7,30 @@ import About from "@/views/About.vue";
 
 // Components
 import Register from "@/components/auth/Register";
-// import Test from "@/components/TestPage.vue";
+import Login from "@/components/auth/Login";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home
   },
   {
     path: "/about",
-    name: "About",
+    name: "about",
     component: About
   },
   {
     path: "/register",
-    name: "Register",
+    name: "register",
     component: Register
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login
   }
 ];
 

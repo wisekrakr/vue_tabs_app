@@ -1,14 +1,25 @@
+
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>|
-      <router-link to="/register">Register</router-link>|
-      <!-- <router-link to="/test">TEST</router-link> -->
-    </div>
-    <router-view />
+    <v-app>
+      <main>
+        <Header />
+        <v-container fluid>
+          <router-view />
+        </v-container>
+      </main>
+    </v-app>
   </div>
 </template>
+
+<script>
+import Header from "./components/layout/Header";
+export default {
+  components: {
+    Header
+  }
+};
+</script>
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=PT+Sans+Narrow&display=swap");
@@ -24,37 +35,18 @@
   --background-opacity: rgba(0, 0, 0, 0.7);
 }
 
-* {
+#app {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-body {
   overflow-x: hidden;
   font-family: "PT Sans Narrow", sans-serif;
   background: var(--light-color, 6);
-}
-
-#app {
   font-family: "PT Sans Narrow", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: var(--primary-color);
 }
 
 .btn {

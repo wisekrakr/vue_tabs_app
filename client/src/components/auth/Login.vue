@@ -3,14 +3,11 @@
     <v-layout row>
       <v-flex xs6 offset-xs3>
         <v-toolbar dense dark>
-          <v-toolbar-title>Sign Up</v-toolbar-title>
-          <v-subheader>Create an account</v-subheader>
+          <v-toolbar-title>Sign In</v-toolbar-title>
+          <v-subheader>Welcome back</v-subheader>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
           <v-form>
-            <v-flex xs6 offset-xs3>
-              <v-text-field label="Username" v-model="username" />
-            </v-flex>
             <v-flex xs6 offset-xs3>
               <v-text-field label="Email" v-model="email" />
             </v-flex>
@@ -20,7 +17,7 @@
 
             <div v-html="error" class="error" />
 
-            <button @click="registerUser" class="btn med-btn">Register</button>
+            <button @click="loginUser" class="btn med-btn">Login</button>
           </v-form>
         </div>
       </v-flex>
@@ -32,16 +29,14 @@
 import AuthenticationService from "../../services/AuthenticationService";
 export default {
   data: () => ({
-    username: "",
     email: "",
     password: "",
     error: null
   }),
   methods: {
-    async registerUser() {
+    async loginUser() {
       try {
-        await AuthenticationService.register({
-          username: this.username,
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         });

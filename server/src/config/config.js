@@ -9,5 +9,8 @@ module.exports = {
       host: process.env.HOST || "localhost",
       storage: "./wisetabs.sqlite"
     }
+  },
+  authentication: {
+    jwtSecret: process.env.JWT_SECRET || "jwtsecret"
   }
 };

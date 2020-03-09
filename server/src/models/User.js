@@ -1,5 +1,12 @@
+const bcrypt = require("bcryptjs");
+
 module.exports = (sequilize, DataTypes) => {
-  return sequilize.define("User", {
+  const User = sequilize.define("User", {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -16,4 +23,20 @@ module.exports = (sequilize, DataTypes) => {
       }
     }
   });
+
+  User.beforeSave(async user => {
+    user.password = await user.generatePasswordHash(user);
+  });
+
+  User.prototype.generatePasswordHash = async function(user) {
+    const saltRounds = 8;
+    return await bcrypt.hash(user.password, saltRounds);
+  };
+
+  User.prototype.comparePassword = function(password) {
+    console.log(password, this.password);
+    return bcrypt.compare(password, this.password);
+  };
+
+  return User;
 };
