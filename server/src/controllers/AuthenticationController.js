@@ -19,7 +19,7 @@ module.exports = {
         token: JwtSignUser.signInUser(userJson)
       });
     } catch (error) {
-      res.status(400).send({
+      res.status(500).send({
         error: `Registration Aborted ${error}!`
       });
     }

@@ -1,0 +1,14 @@
+ <!-- <v-card relative class="mx-auto" max-width="700" dark>
+    <v-toolbar-title>Search for song tabs</v-toolbar-title>
+    <v-toolbar>
+      <v-text-field hide-details single-line></v-text-field>
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+    </v-toolbar>
+    <div class="pl-4 pr-4 pt-2 pb-2">
+      Blanco
+    </div>
+  </v-card> -->

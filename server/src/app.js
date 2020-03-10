@@ -12,10 +12,10 @@ app.use(express.json({ extended: false }));
 app.use(morgan("combined"));
 app.use(cors());
 
-require("./routes")(app);
+require("./routes/routes")(app);
 
 // Connect sequelize to the database and create tables if they don't exist
-sequelize.sync().then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(config.port);
   console.log(`Server is connected to port ${config.port}`);
 });

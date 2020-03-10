@@ -8,6 +8,8 @@ export default new Vuex.Store({
   state: {
     token: localStorage.getItem("token") || "",
     user: null,
+    song: null,
+    songs: null,
     isUserLoggedIn: false
   },
   mutations: {
@@ -18,6 +20,9 @@ export default new Vuex.Store({
     },
     setUser(state, user) {
       state.user = user;
+    },
+    addSong(state, song) {
+      state.song = song;
     }
   },
   actions: {
@@ -26,6 +31,9 @@ export default new Vuex.Store({
     },
     setUser({ commit }, user) {
       commit("setUser", user);
+    },
+    addSong({ commit }, song) {
+      commit("addSong", song);
     }
   },
   modules: {}
