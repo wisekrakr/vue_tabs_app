@@ -12,7 +12,11 @@
               <v-text-field label="Email" v-model="email" />
             </v-flex>
             <v-flex xs6 offset-xs3>
-              <v-text-field label="Password" type="password" v-model="password" />
+              <v-text-field
+                label="Password"
+                type="password"
+                v-model="password"
+              />
             </v-flex>
 
             <div v-html="error" class="error" />
@@ -36,10 +40,12 @@ export default {
   methods: {
     async loginUser() {
       try {
-        await AuthenticationService.login({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         });
+        this.$store.dispatch("setToken", response.data.token);
+        this.$store.dispatch("setUser", response.data.user);
       } catch (error) {
         this.error = error.response.data.error;
       }

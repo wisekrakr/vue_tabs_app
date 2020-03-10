@@ -11,29 +11,34 @@
     <v-spacer></v-spacer>
 
     <v-toolbar-items>
-      <router-link to="/register">
-        <v-btn icon>
-          <v-icon>mdi-account-plus</v-icon>
-        </v-btn>
-      </router-link>
+      <v-btn icon v-if="!$store.state.isUserLoggedIn" to="/register">
+        <v-icon>mdi-account-plus</v-icon>
+      </v-btn>
 
-      <router-link to="/login">
-        <v-btn icon>
-          <v-icon>mdi-login-variant</v-icon>
-        </v-btn>
-      </router-link>
+      <v-btn icon v-if="!$store.state.isUserLoggedIn" to="/login">
+        <v-icon>mdi-login-variant</v-icon>
+      </v-btn>
 
-      <router-link to="/logout">
-        <v-btn icon>
-          <v-icon>mdi-export</v-icon>
-        </v-btn>
-      </router-link>
+      <v-btn icon v-if="$store.state.isUserLoggedIn" @click="logoutUser" to="/">
+        <v-icon>mdi-export</v-icon>
+      </v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    async logoutUser() {
+      try {
+        this.$store.dispatch("setToken", null);
+        this.$store.dispatch("setUser", null);
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -44,9 +49,6 @@ export default {};
 }
 .v-toolbar__title {
   color: #fff;
-  text-align: center;
-  left: 50vw;
-  top: 50hw;
 }
 a {
   text-decoration: none;

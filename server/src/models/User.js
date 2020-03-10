@@ -34,7 +34,6 @@ module.exports = (sequilize, DataTypes) => {
   };
 
   User.prototype.comparePassword = function(password) {
-    console.log(password, this.password);
     return bcrypt.compare(password, this.password);
   };
 
