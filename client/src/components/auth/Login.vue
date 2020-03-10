@@ -7,12 +7,12 @@
           <v-subheader>Welcome back</v-subheader>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
-          <v-form>
+          <v-form name="wise-tabs-form">
             <v-flex xs6 offset-xs3>
               <v-text-field label="Email" v-model="email" />
             </v-flex>
             <v-flex xs6 offset-xs3>
-              <v-text-field label="Password" v-model="password" />
+              <v-text-field label="Password" type="password" v-model="password" />
             </v-flex>
 
             <div v-html="error" class="error" />

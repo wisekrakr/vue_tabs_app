@@ -55,6 +55,7 @@ export default {
   color: #fff;
 }
 .btn:hover {
+  border: 2px solid var(--primary-color);
   transition: all 0.75s ease-out;
   background: var(--secondary-color);
   color: var(--primary-color);
