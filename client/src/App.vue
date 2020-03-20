@@ -82,4 +82,9 @@ export default {
   border-radius: 1rem;
   padding: 0.2rem 0.45rem;
 }
+
+.album-image {
+  width: 55%;
+  margin: 0 auto;
+}
 </style>

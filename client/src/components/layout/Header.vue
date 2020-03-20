@@ -1,8 +1,7 @@
 <template>
   <div>
     <v-app-bar dark>
-      <v-app-bar-nav-icon hide-on-scroll @click="drawer = true">
-      </v-app-bar-nav-icon>
+      <v-app-bar-nav-icon hide-on-scroll @click="drawer = true"></v-app-bar-nav-icon>
 
       <router-link to="/">
         <v-toolbar-title>Wise Tabs</v-toolbar-title>
@@ -19,12 +18,7 @@
           <v-icon>mdi-login-variant</v-icon>
         </v-btn>
 
-        <v-btn
-          icon
-          v-if="$store.state.isUserLoggedIn"
-          @click="logoutUser"
-          to="/"
-        >
+        <v-btn icon v-if="$store.state.isUserLoggedIn" @click="logoutUser" to="/">
           <v-icon>mdi-export</v-icon>
         </v-btn>
       </v-toolbar-items>
@@ -46,7 +40,7 @@
             <v-list-item-title>Browse</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/songs/add-song">
+          <v-list-item to="/songs/add-song" v-if="$store.state.isUserLoggedIn">
             <v-list-item-icon>
               <v-icon>mdi-music-circle</v-icon>
             </v-list-item-icon>

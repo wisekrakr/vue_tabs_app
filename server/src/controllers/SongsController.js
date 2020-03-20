@@ -23,5 +23,17 @@ module.exports = {
         error: `Error while adding song: ${error}!`
       });
     }
+  },
+  async getSong(req, res) {
+    try {
+      const song = await Song.findByPk(req.params.songId);
+
+      res.send(song);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        error: `Error while retrieving song by id: ${error}!`
+      });
+    }
   }
 };

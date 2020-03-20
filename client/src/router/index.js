@@ -9,6 +9,7 @@ import Login from "@/views/auth/Login";
 
 // Components
 import Songs from "@/components/music/Songs";
+import Song from "@/components/music/song/Song";
 import AddSong from "@/components/music/AddSong";
 
 Vue.use(VueRouter);
@@ -39,6 +40,12 @@ const routes = [
     name: "songs",
     component: Songs
   },
+  {
+    path: "/songs/get/:songId",
+    name: "song",
+    component: Song
+  },
+
   {
     path: "/songs/add-song",
     name: "add-song",

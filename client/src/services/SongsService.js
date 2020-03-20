@@ -6,5 +6,8 @@ export default {
   },
   addSong(song) {
     return Api().post("songs", song);
+  },
+  getSong(songId) {
+    return Api().get(`songs/get/${songId}`);
   }
 };

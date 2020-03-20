@@ -3,7 +3,7 @@ module.exports = (sequilize, DataTypes) => {
     title: DataTypes.STRING,
     artist: DataTypes.STRING,
     album: DataTypes.STRING,
-    releaseDate: DataTypes.STRING,
+    releaseDate: DataTypes.DATE,
     genre: DataTypes.STRING,
     albumImageUrl: DataTypes.STRING,
     youtubeId: DataTypes.STRING,
