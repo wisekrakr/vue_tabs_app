@@ -15,7 +15,7 @@
             min-width="290px"
           >
             <template v-slot:activator="{ on }">
-              <v-text-field v-model="song.releaseDate" label="Release Date" readonly v-on="on"></v-text-field>
+              <v-text-field v-model="song.releaseDate" label="Release Date" v-on="on"></v-text-field>
             </template>
             <v-date-picker v-model="song.releaseDate" @input="menu2 = false"></v-date-picker>
           </v-menu>
@@ -32,7 +32,7 @@
       <Panel title="Song Lyrics">
         <v-textarea label="Lyrics" multi-line v-model="song.lyrics" />
       </Panel>
-      <button @click="addSong" class="btn large-btn" style="width:50%">Add Song</button>
+      <button @click="saveSong" class="btn large-btn" style="width:50%">Edit Song</button>
     </v-flex>
   </v-layout>
 </template>
@@ -59,17 +59,43 @@ export default {
   }),
 
   methods: {
-    async addSong() {
+    async saveSong() {
       try {
-        await SongsService.addSong(this.song);
-        // this.$store.dispatch("addSong", response.data.song);
+        await SongsService.updateSong(
+          this.$store.state.route.params.songId,
+          this.song
+        );
 
         this.$router.push({
-          name: "songs"
+          name: "song",
+          params: {
+            songId: this.$store.state.route.params.songId
+          }
         });
       } catch (error) {
         this.error = error.response.data.error;
       }
+    }
+  },
+  async mounted() {
+    try {
+      const res = await SongsService.getSong(
+        this.$store.state.route.params.songId
+      );
+
+      this.song = {
+        title: res.data.title,
+        artist: res.data.artist,
+        album: res.data.album,
+        releaseDate: null,
+        genre: res.data.genre,
+        albumImageUrl: res.data.albumImageUrl,
+        youtubeId: res.data.youtubeId,
+        lyrics: res.data.lyrics,
+        tab: res.data.tab
+      };
+    } catch (error) {
+      this.error = error.response.data.error;
     }
   }
 };

@@ -1,7 +1,10 @@
 <template>
   <div>
     <v-app-bar dark>
-      <v-app-bar-nav-icon hide-on-scroll @click="drawer = true"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        hide-on-scroll
+        @click="drawer = true"
+      ></v-app-bar-nav-icon>
 
       <router-link to="/">
         <v-toolbar-title>Wise Tabs</v-toolbar-title>
@@ -18,7 +21,12 @@
           <v-icon>mdi-login-variant</v-icon>
         </v-btn>
 
-        <v-btn icon v-if="$store.state.isUserLoggedIn" @click="logoutUser" to="/">
+        <v-btn
+          icon
+          v-if="$store.state.isUserLoggedIn"
+          @click="logoutUser"
+          to="/"
+        >
           <v-icon>mdi-export</v-icon>
         </v-btn>
       </v-toolbar-items>
@@ -69,6 +77,10 @@ export default {
       try {
         this.$store.dispatch("setToken", null);
         this.$store.dispatch("setUser", null);
+
+        this.$router.push({
+          name: "home"
+        });
       } catch (error) {
         this.error = error.response.data.error;
       }

@@ -12,10 +12,14 @@
               <v-text-field label="Email" v-model="email" />
             </v-flex>
             <v-flex xs6 offset-xs3>
-              <v-text-field label="Password" type="password" v-model="password" />
+              <v-text-field
+                label="Password"
+                type="password"
+                v-model="password"
+              />
             </v-flex>
 
-            <div v-html="error" class="error" />
+            <div v-html="error" class="danger-alert" />
 
             <button @click="loginUser" class="btn med-btn">Login</button>
           </v-form>

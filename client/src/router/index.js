@@ -8,13 +8,18 @@ import Register from "@/views/auth/Register";
 import Login from "@/views/auth/Login";
 
 // Components
-import Songs from "@/components/music/Songs";
+import Songs from "@/components/music/songs/Songs";
 import Song from "@/components/music/song/Song";
 import AddSong from "@/components/music/AddSong";
+import EditSong from "@/components/music/EditSong";
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "*",
+    redirect: "songs"
+  },
   {
     path: "/",
     name: "home",
@@ -50,6 +55,12 @@ const routes = [
     path: "/songs/add-song",
     name: "add-song",
     component: AddSong
+  },
+
+  {
+    path: "/songs/get/:songId/edit",
+    name: "edit-song",
+    component: EditSong
   }
 ];
 

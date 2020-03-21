@@ -4,8 +4,11 @@ import router from "./router";
 import vuetify from "./plugins/vuetify";
 import { sync } from "vuex-router-sync";
 import store from "./store";
+import Panel from "./components/templates/Panel";
 
 Vue.config.productionTip = false;
+
+Vue.component("Panel", Panel);
 
 sync(store, router);
 

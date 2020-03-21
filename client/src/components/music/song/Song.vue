@@ -1,34 +1,27 @@
 <template>
   <div>
     <SongMetaData :song="song" />
-    <Panel title="Guitar Tab">
-      <v-layout xs6>
-        <v-flex>
-          <v-textarea readonly v-model="song.tab" />
-        </v-flex>
-      </v-layout>
-    </Panel>
+    <SongGuitarTab :tab="song.tab" />
 
     <v-layout>
       <v-flex xs6>
-        <Panel title="Song Lyrics">
-          <v-textarea readonly v-model="song.lyrics" />
-        </Panel>
+        <SongLyrics :lyrics="song.lyrics" />
       </v-flex>
 
       <v-flex xs6>
         <SongYouTube :youtubeId="song.youtubeId" />
       </v-flex>
     </v-layout>
-    <div v-html="error" class="error" />
+    <div v-html="error" class="danger-alert" />
   </div>
 </template>
 
 <script>
 import SongsService from "@/services/SongsService.js";
-import Panel from "@/components/templates/Panel";
 import SongMetaData from "./SongMetaData";
 import SongYouTube from "./SongYouTube";
+import SongLyrics from "./SongLyrics";
+import SongGuitarTab from "./SongGuitarTab";
 
 export default {
   data: () => ({
@@ -36,9 +29,10 @@ export default {
     error: null
   }),
   components: {
-    Panel,
     SongMetaData,
-    SongYouTube
+    SongYouTube,
+    SongLyrics,
+    SongGuitarTab
   },
   async mounted() {
     //   request to backend as soon as page loads

@@ -1,22 +1,40 @@
 <template>
   <Panel :title="song.title">
+    <v-btn
+      v-if="$store.state.isUserLoggedIn"
+      slot="action"
+      light
+      medium
+      absolute
+      right
+      middle
+      fab
+      :to="`/songs/get/` +song.id +`/edit`"
+    >
+      <v-icon>mdi-file-document-edit</v-icon>
+    </v-btn>
     <v-layout>
       <v-flex>
         <ul class="meta-list">
           <li>
-            Artist: <span>{{ song.artist }}</span>
+            Artist:
+            <span>{{ song.artist }}</span>
           </li>
           <li>
-            Album: <span>{{ song.album }}</span>
+            Album:
+            <span>{{ song.album }}</span>
           </li>
           <li>
-            Genre: <span>{{ song.genre }}</span>
+            Genre:
+            <span>{{ song.genre }}</span>
           </li>
           <li>
-            Release Date:<span> {{ formatDate(song.releaseDate) }} </span>
+            Release Date:
+            <span>{{ formatDate(song.releaseDate) }}</span>
           </li>
         </ul>
       </v-flex>
+
       <v-flex>
         <img :src="song.albumImageUrl" class="album-image" />
       </v-flex>
@@ -27,12 +45,9 @@
 <script>
 import moment from "moment";
 
-import Panel from "@/components/templates/Panel";
 export default {
   props: ["song"],
-  components: {
-    Panel
-  },
+
   methods: {
     formatDate(date) {
       return moment(date).format("YYYY-MM-DD");

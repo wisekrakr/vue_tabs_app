@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import Panel from "@/components/templates/Panel";
 export default {
-  props: ["youtubeId"],
-  components: {
-    Panel
-  }
+  props: ["youtubeId"]
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.youtube {
+  width: 90%;
+}
+</style>

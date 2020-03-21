@@ -22,7 +22,7 @@
             />
           </v-flex>
 
-          <div v-html="error" class="error" />
+          <div v-html="error" class="danger-alert" />
 
           <button @click="registerUser" class="btn med-btn">Register</button>
         </v-form>
